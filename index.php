@@ -13,13 +13,13 @@ require 'logic.php';
 <p>This tool helps users plan loan payments. Fill out the form below and press submit.</p>
 <form method="GET" action="calculate.php">
     <input type="number" name="principal" placeholder="Principal amount">
-    <input type="number" name="interest" placeholder="Interest Rate">
-    <input type="range" name="payment" placeholder="Monthly Payment">
+    <input type="number" name="interest" step=".001" placeholder="Interest Rate">
+    <input type="number" name="payment" placeholder="Monthly Payment">
     <input type="submit" value="Calculate">
 </form>
-<?php if (isset($principal)): ?>
+<?php if (isset($payment_periods)): ?>
     <p>
-        <?= $principal ?>
+        Total Payment periods: <?= $payment_periods ?>
     </p>
 <?php endif ?>
 
