@@ -1,6 +1,6 @@
-#Project 2
-```By: your first and last name```
-```Production URL: http://p2.yourdomain.com```
+# Project 2
+* By: your first and last name
+* Production URL: http://p2.yourdomain.com
 ## Outside resources
 *your list of outside resources go here*
 
