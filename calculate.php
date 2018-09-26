@@ -17,7 +17,7 @@ $int_paid = 0;
 # Total number of payment periods
 $payment_periods = 0;
 
-while ($principal > $payment) {
+while ($principal > 0) {
     # At the start of the cycle, calculate 30 days of interest and add to principal
     $simple_daily_int = $principal * $int_rate_factor;
     # Interest to add equals simple daily interest * days since last payment (30)
@@ -29,13 +29,16 @@ while ($principal > $payment) {
     # Apply monthly payment to principal
     $principal -= $payment;
     # Count payment periods
-    $payment_periods += 1;
+    ++$payment_periods;
 }
 
+# 'remainder' is the amount of principal that is left after payments have been applied
+$_SESSION['result'] = [
+    'int_paid' => $int_paid,
+    'payment_periods' => $payment_periods,
+    'remainder' => $principal
+];
 
-
-
-$_SESSION['result'] = $payment_periods;
 
 header('Location: index.php');
 
