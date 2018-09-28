@@ -1,6 +1,6 @@
 <?php
 
-function get_int_factor($interest)
+function getInterestFactor($interest)
 {
     $rate = $interest / 365;
     return $rate;

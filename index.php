@@ -11,9 +11,10 @@ require 'logic.php';
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
           crossorigin="anonymous">
+    <link href='/styles/app.css' rel='stylesheet'>
 </head>
 <body>
-<div class="container">
+<main class="container">
     <h1>Loan Map</h1>
     <p>This tool helps users plan loan payments. Fill out the form below and press submit.</p>
     <div class="row">
@@ -42,19 +43,18 @@ require 'logic.php';
                             <option value="ninety">Ninety days</option>
                         </select>
                     </label>
-                    <label>
+                    <label id="checkbox-display">
                         Display Payment Schedule
                         <input type='checkbox' name='display'>
-                    </label>
+                    </label><br>
+                    <input type="submit" value="Calculate">
                 </fieldset>
-
-                <input type="submit" value="Calculate">
             </form>
         </section>
         <section class="col-6 offset-1">
             <?php if (isset($int_paid)): ?>
                 <p>
-                    Total Interest Paid: <?= $int_paid ?>
+                    Total Interest Paid: $<?= $int_paid ?>
                 </p>
             <?php endif ?>
             <?php if (isset($payment_periods)): ?>
@@ -64,7 +64,7 @@ require 'logic.php';
             <?php endif ?>
         </section>
     </div>
-</div>
+</main>
 </body>
 </html>
 

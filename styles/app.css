@@ -1,0 +1,11 @@
+fieldset {
+    text-align: end;
+}
+
+label {
+    margin: .25em .5em .75em .5em;
+}
+
+#checkbox-display {
+    margin-top: 1em;
+}

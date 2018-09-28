@@ -7,9 +7,10 @@ require 'includes/helpers.php';
 $principal = $_GET['principal'];
 $int_rate = $_GET['interest'];
 $payment = $_GET['payment'];
+$cycle = $_GET['paymentCycle'];
 
 # calculate Interest Rate Factor
-$int_rate_factor = get_int_factor($int_rate);
+$int_rate_factor = getInterestFactor($int_rate);
 
 # Total Interest paid
 $int_paid = 0;
