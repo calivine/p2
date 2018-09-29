@@ -45,9 +45,9 @@ require 'logic.php';
         </form>
     </section>
     <section class="col-7">
-        <?php if (isset($int_paid)): ?>
+        <?php if (isset($interestPaid)): ?>
             <p>
-                Total Interest Paid: $<?= $int_paid ?>
+                Total Interest Paid: $<?= $interestPaid ?>
             </p>
         <?php endif ?>
         <?php if (isset($payment_periods)): ?>
@@ -58,11 +58,21 @@ require 'logic.php';
     </section>
     <?php if (isset($paymentSchedule)): ?>
         <table>
-            <tr>
-                <?php foreach($paymentSchedule as $index => $payment): ?>
+            <?php foreach ($paymentSchedule as $index => $payment): ?>
+                <?php if ($index == 0): ?>
+                    <tr>
                     <td>$<?= $payment ?></td>
-                <?php endforeach ?>
-            </tr>
+                <?php elseif ($index == 20 | $index == 40): ?>
+                    <td>$<?= $payment ?></td>
+                    </tr>
+                    <tr>
+                <?php elseif ($index == count($paymentSchedule) - 1): ?>
+                    <td>$<?= $payment ?></td>
+                    </tr>
+                <?php else: ?>
+                    <td>$<?= $payment ?></td>
+                <?php endif ?>
+            <?php endforeach ?>
         </table>
     <?php endif ?>
 </main>

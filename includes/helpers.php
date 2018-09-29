@@ -1,5 +1,16 @@
 <?php
 
+# Total Interest paid
+$interestPaid = 0;
+
+# Total number of payment periods
+$payCycles = 0;
+
+# Array to hold values of payment schedule
+$paymentSchedule = [];
+
+
+
 function convertInterest($interest)
 {
     $converted = $interest * .01;
