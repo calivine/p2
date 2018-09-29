@@ -17,53 +17,54 @@ require 'logic.php';
 <main class="container">
     <h1>Loan Map</h1>
     <p>This tool helps users plan loan payments. Fill out the form below and press submit.</p>
-    <div class="row">
-        <section class="col-5">
-            <form method="GET" action="calculate.php">
-                <fieldset>
-                    <legend>Loan Details</legend>
-                    <label>
-                        Remaining Principal Amount
-                        <input type="number" name="principal" placeholder="$">
-                    </label>
-                    <label>
-                        Interest Rate
-                        <input type="number" name="interest" step=".001" placeholder="i.e. .001">
-                    </label>
-                    <label>
-                        Payment Amount
-                        <input type="number" name="payment" placeholder="$">
-                    </label>
-                    <label>
-                        Payment Cycle Duration
-                        <select name="paymentCycle">
-                            <option value="select">Select length</option>
-                            <option value="thirty">Thirty days</option>
-                            <option value="sixty">Sixty days</option>
-                            <option value="ninety">Ninety days</option>
-                        </select>
-                    </label>
-                    <label id="checkbox-display">
-                        Display Payment Schedule
-                        <input type='checkbox' name='display'>
-                    </label><br>
-                    <input type="submit" value="Calculate">
-                </fieldset>
-            </form>
-        </section>
-        <section class="col-6 offset-1">
-            <?php if (isset($int_paid)): ?>
-                <p>
-                    Total Interest Paid: $<?= $int_paid ?>
-                </p>
-            <?php endif ?>
-            <?php if (isset($payment_periods)): ?>
-                <p>
-                    Time to pay off: <?= $payment_periods ?> year(s)
-                </p>
-            <?php endif ?>
-        </section>
-    </div>
+    <section>
+        <form method="GET" action="calculate.php">
+            <fieldset>
+                <legend>Loan Details</legend>
+                <label for="principal">Remaining Principal Amount</label>
+                <input type="number" id="principal" name="principal" placeholder="$">
+                <label for="interest">Interest Rate</label>
+                <input type="number" id="interest" name="interest" step=".001">
+                <label for="payment">Payment Amount</label>
+                <input type="number" id="payment" name="payment" placeholder="$">
+                <label>
+                    Payment Cycle Duration
+                    <select name="paymentCycle">
+                        <option value="select">Select length</option>
+                        <option value="thirty">Thirty days</option>
+                        <option value="sixty">Sixty days</option>
+                        <option value="ninety">Ninety days</option>
+                    </select>
+                </label>
+                <label id="checkbox-display">
+                    <input type='checkbox' name='display'>
+                    Display Payment Schedule
+                </label>
+            </fieldset>
+            <input type="submit" value="Calculate">
+        </form>
+    </section>
+    <section class="col-7">
+        <?php if (isset($int_paid)): ?>
+            <p>
+                Total Interest Paid: $<?= $int_paid ?>
+            </p>
+        <?php endif ?>
+        <?php if (isset($payment_periods)): ?>
+            <p>
+                Time to pay off: <?= $payment_periods ?> year(s)
+            </p>
+        <?php endif ?>
+    </section>
+    <?php if (isset($paymentSchedule)): ?>
+        <table>
+            <tr>
+                <?php foreach($paymentSchedule as $index => $payment): ?>
+                    <td>$<?= $payment ?></td>
+                <?php endforeach ?>
+            </tr>
+        </table>
+    <?php endif ?>
 </main>
 </body>
 </html>

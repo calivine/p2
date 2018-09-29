@@ -1,5 +1,11 @@
 <?php
 
+function convertInterest($interest)
+{
+    $converted = $interest * .01;
+    return $converted;
+}
+
 function getInterestFactor($interest)
 {
     $rate = $interest / 365;
@@ -17,13 +23,13 @@ function interestPerCycle($principal, $intRateFactor, $termLength)
 
 function paymentPeriodDuration($cycle)
 {
-    if($cycle == 'thirty') {
+    if ($cycle == 'thirty') {
         $paymentTerm = 30;
     }
-    else if($cycle == 'sixty') {
+    else if ($cycle == 'sixty') {
         $paymentTerm = 60;
     }
-    else if($cycle == 'ninety') {
+    else if ($cycle == 'ninety') {
         $paymentTerm = 90;
     }
     else {

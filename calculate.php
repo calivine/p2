@@ -10,6 +10,8 @@ $payment = $_GET['payment'];
 $cycle = $_GET['paymentCycle'];
 $display = isset($_GET['display']);
 
+$interestRate = convertInterest($interestRate);
+
 # calculate Interest Rate Factor
 $intRateFactor = getInterestFactor($interestRate);
 
@@ -39,7 +41,7 @@ while ($principal > $payment) {
     $principal -= $payment;
     # Count payment periods
     ++$payCycles;
-    $paymentSchedule[] = $principal;
+    $paymentSchedule[] = round($principal, 2);
 }
 
 # Calculate final period of interest and finish paying off loan.
@@ -54,16 +56,26 @@ $int_paid += $interest;
 $principal -= $principal;
 # Count payment periods
 ++$payCycles;
-$paymentSchedule[] = $principal;
+$paymentSchedule[] = round($principal,  2);
 
 $duration = formatAsYears($payCycles, $termLength);
 
 # 'remainder' is the amount of principal that is left after payments have been applied
-$_SESSION['result'] = [
-    'int_paid' => $int_paid,
-    'payment_periods' => $duration,
-    'paymentSchedule' => $paymentSchedule
-];
+
+if ($display == 'true') {
+    $_SESSION['result'] = [
+        'int_paid' => $int_paid,
+        'payment_periods' => $duration,
+        'paymentSchedule' => $paymentSchedule
+    ];
+}
+else {
+    $_SESSION['result'] = [
+        'int_paid' => $int_paid,
+        'payment_periods' => $duration
+    ];
+}
+
 
 
 header('Location: index.php');
