@@ -9,6 +9,10 @@ fieldset {
     margin: 0 auto;
 }
 
+h1 {
+    margin: auto 0;
+}
+
 label {
     margin: .25em .5em .75em .5em;
 }

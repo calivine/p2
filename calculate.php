@@ -5,57 +5,63 @@ require 'includes/helpers.php';
 
 # Get data from form.
 $principal = $_GET['principal'];
-$int_rate = $_GET['interest'];
+$interestRate = $_GET['interest'];
 $payment = $_GET['payment'];
 $cycle = $_GET['paymentCycle'];
 $display = isset($_GET['display']);
 
 # calculate Interest Rate Factor
-$int_rate_factor = getInterestFactor($int_rate);
+$intRateFactor = getInterestFactor($interestRate);
 
 # Total Interest paid
 $int_paid = 0;
 
 # Total number of payment periods
-$payment_periods = 0;
+$payCycles = 0;
 
+# Array to hold values of payment schedule
 $paymentSchedule = [];
 
 # Get payment period term
-if($cycle == 'thirty') {
-    $paymentTerm = 30;
-}
-else if($cylce == 'sixty') {
-    $paymentTerm = 60;
-}
-else if($cycle == 'ninety') {
-    $paymentTerm = 90;
-}
-else {
-    $paymentTerm = 30; # Default if none chosen.
-}
+$termLength = paymentPeriodDuration($cycle);
 
 while ($principal > $payment) {
     # At the start of the cycle, calculate 30 days of interest and add to principal
-    $simple_daily_int = $principal * $int_rate_factor;
+    # $simple_daily_int = $principal * $intRateFactor;
     # Interest to add equals simple daily interest * days since last payment (30)
-    $int_to_add = $simple_daily_int * $paymentTerm;
+    # $int_to_add = $simple_daily_int * $termLength;
+    $interest = interestPerCycle($principal, $intRateFactor, $termLength);
     # Add interest to principal amount.
-    $principal += $int_to_add;
+    $principal += $interest;
     # Add interest to total interest paid
-    $int_paid += $int_to_add;
+    $int_paid += $interest;
     # Apply monthly payment to principal
     $principal -= $payment;
     # Count payment periods
-    ++$payment_periods;
+    ++$payCycles;
     $paymentSchedule[] = $principal;
 }
+
+# Calculate final period of interest and finish paying off loan.
+# $simple_daily_int = $principal * $intRateFactor;
+# $interest = $simple_daily_int * $termLength;
+$interest = interestPerCycle($principal, $intRateFactor, $termLength);
+# Add interest to principal amount.
+$principal += $interest;
+# Add interest to total interest paid
+$int_paid += $interest;
+# Apply monthly payment to principal
+$principal -= $principal;
+# Count payment periods
+++$payCycles;
+$paymentSchedule[] = $principal;
+
+$duration = formatAsYears($payCycles, $termLength);
 
 # 'remainder' is the amount of principal that is left after payments have been applied
 $_SESSION['result'] = [
     'int_paid' => $int_paid,
-    'payment_periods' => $payment_periods,
-    'remainder' => $principal,
+    'payment_periods' => $duration,
     'paymentSchedule' => $paymentSchedule
 ];
 

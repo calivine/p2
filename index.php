@@ -59,12 +59,7 @@ require 'logic.php';
             <?php endif ?>
             <?php if (isset($payment_periods)): ?>
                 <p>
-                    Payment periods: <?= $payment_periods ?>
-                </p>
-            <?php endif ?>
-            <?php if (isset($principalRemaining)): ?>
-                <p>
-                    Remaining Principal: $<?= $principalRemaining ?>
+                    Time to pay off: <?= $payment_periods ?> year(s)
                 </p>
             <?php endif ?>
         </section>
