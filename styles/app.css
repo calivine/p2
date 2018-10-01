@@ -1,8 +1,17 @@
 body {
-    background-color: lightskyblue;
+    background-color: whitesmoke;
     display: block;
-    width: 100%;
     height: 100%;
+    margin: 20px 0 0 0;
+    width: 100%;
+}
+
+form {
+    background-color: deepskyblue;
+    display: block;
+    margin: inherit;
+    text-align: center;
+    width: 45%;
 }
 
 h1 {
@@ -11,24 +20,32 @@ h1 {
     text-align: center;
 }
 
-label {
+input, select {
     display: block;
-    margin: .25em auto .50em;
+    margin: 0 auto;
+}
+
+label {
+    margin: 0;
     text-align: left;
 }
 
+main {
+    max-width: 100%;
+}
+
 p {
-    margin: 1em auto;
+    margin: 16px auto;
     text-align: center;
 }
 
 section {
     margin: 0 auto;
-    width: 20%;
 }
 
 td {
-    margin: 1em;
+    margin: 16px;
+    padding: 8px;
 }
 
 td:nth-child(even) {
@@ -37,8 +54,4 @@ td:nth-child(even) {
 
 td:nth-child(odd) {
     background: #FFF;
-}
-
-#checkbox-display {
-    margin-top: 1em;
 }
