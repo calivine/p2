@@ -19,16 +19,30 @@ require 'logic.php';
     <p>This tool helps users plan loan payments. Fill out the form below and press submit.</p>
     <section>
         <form method='GET' action='calculate.php'>
+            <p>Required fields are followed by <strong><abbr title='required'>*</abbr></strong></p>
             <fieldset>
                 <legend>Loan Details</legend>
-                <label for='principal'>Remaining Principal Amount</label>
-                <input type='number' id='principal' name='principal' value='<?= $principal ?? '' ?>'>
-                <label for='interest'>Interest Rate</label>
+                <label for='principal'>
+                    Principal Remaining ($)
+                    <strong><abbr title='required'>*</abbr></strong>
+                </label>
+                <input type='number'
+                       autofocus id='principal' name='principal' value='<?= $principal ?? '' ?>'>
+                <label for='interest'>
+                    Interest (%)
+                    <strong><abbr title='required'>*</abbr></strong>
+                </label>
                 <input type='number'
                        id='interest' name='interest' step='.01' value='<?= $interest ?? '' ?>'>
-                <label for='payment'>Payment Amount</label>
-                <input type='number' id='payment' name='payment' value='<?= $payment ?? '' ?>'>
-                <label for='paymentCycle'>Payment Cycle Duration</label>
+                <label for='payment'>
+                    Payment Amount ($)
+                    <strong><abbr title='required'>*</abbr></strong>
+                </label>
+                <input type='number'
+                       id='payment' name='payment' value='<?= $payment ?? '' ?>'>
+                <label for='paymentCycle'>
+                    Payment Cycle Duration
+                </label>
                 <select name='paymentCycle' id='paymentCycle'>
                     <option value='select'>Select Length</option>
                     <option value='thirty'
@@ -41,8 +55,10 @@ require 'logic.php';
                         <?php if (isset ($paymentCycle) and $paymentCycle == 'ninety') echo 'selected' ?>>
                         Ninety days</option>
                 </select>
-                <label for='display'>Display Payment Schedule</label>
-                <input type='checkbox' name='display' id='display' <?php if (isset($display) and $display) echo 'checked' ?>>
+                <label for='display'>
+                    <input type='checkbox' name='display' id='display' <?php if (isset($display) and $display) echo 'checked' ?>>
+                    Display Payment Schedule
+                </label>
             </fieldset>
             <input type='submit' value='Calculate'>
             <?php if ($hasErrors): ?>
@@ -87,7 +103,7 @@ require 'logic.php';
                     <?php endforeach ?>
                 </table>
             <?php endif ?>
-        </section>
+       </section>
     <?php endif; ?>
 </main>
 </body>
