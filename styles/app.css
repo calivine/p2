@@ -18,17 +18,20 @@ h1 {
 }
 
 input, select {
+    margin: 0 0 10px 0;
     width: 260px;
 }
 
 input[type=checkbox] {
-    margin: 10px 5px 5px 0;
-    padding: 10px 5px 5px 0;
+    margin: 5px 5px 8px 0;
+    padding: 5px 5px 8px 0;
     width: 25px;
 }
 
 label {
     display: block;
+    margin: 0;
+    padding: 0;
     text-align: left;
 }
 
@@ -45,6 +48,12 @@ section {
     margin: 0 auto;
 }
 
+table {
+    max-height: 50%;
+    max-width: 300px;
+    overflow-y: scroll;
+}
+
 td {
     margin: 16px;
     padding: 8px;
@@ -56,8 +65,4 @@ td:nth-child(even) {
 
 td:nth-child(odd) {
     background: #FFF;
-}
-
-#output {
-    float: right;
 }

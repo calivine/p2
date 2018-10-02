@@ -27,21 +27,21 @@ require 'logic.php';
                     <strong><abbr title='required'>*</abbr></strong>
                 </label>
                 <input type='number'
-                       autofocus id='principal' name='principal' value='<?= $principal ?? '' ?>'>
+                       autofocus id='principal' name='principal' step='.01' value='<?= $principal ?? '' ?>'>
                 <label for='interest'>
                     Interest (%)
                     <strong><abbr title='required'>*</abbr></strong>
                 </label>
                 <input type='number'
-                       id='interest' name='interest' step='.01' value='<?= $interest ?? '' ?>'>
+                       id='interest' name='interest' step='.001' value='<?= $interest ?? '' ?>'>
                 <label for='payment'>
                     Payment Amount ($)
                     <strong><abbr title='required'>*</abbr></strong>
                 </label>
                 <input type='number'
-                       id='payment' name='payment' value='<?= $payment ?? '' ?>'>
+                       id='payment' name='payment' step='.01' value='<?= $payment ?? '' ?>'>
                 <label for='paymentCycle'>
-                    Payment Cycle Duration
+                    Payment Frequency
                 </label>
                 <select name='paymentCycle' id='paymentCycle'>
                     <option value='select'>Select Length</option>
@@ -90,7 +90,7 @@ require 'logic.php';
                         <?php if ($index == 0): ?>
                             <tr>
                             <td>$<?= $payment ?></td>
-                        <?php elseif ($index == 13 | $index == 33 | $index == 53): ?>
+                        <?php elseif ($index % $rowBreak == 0): ?>
                             <td>$<?= $payment ?></td>
                             </tr>
                             <tr>

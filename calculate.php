@@ -1,6 +1,4 @@
 <?php
-
-
 require 'includes/helpers.php';
 require 'Form.php';
 
@@ -35,6 +33,7 @@ if (!$form->hasErrors) {
     # Get payment period term
     $termLength = paymentPeriodDuration($paymentCycle);
 
+    # Variable to tracking principal as it is paid off.
     $remainingPrincipal = $principal;
 
     $paymentSchedule[] = $remainingPrincipal;
@@ -52,10 +51,9 @@ if (!$form->hasErrors) {
         # Track progress
         $paymentSchedule[] = round($remainingPrincipal, 2);
     }
-
     /*
-     Payoff remainder of loan by going through
-     process a final time.  */
+     * Payoff remainder of loan by going through
+     * process a final time.  */
     $interestPayment = interestPerCycle($remainingPrincipal, $intRateFactor, $termLength);
     # Add interest to principal amount.
     $remainingPrincipal += $interestPayment;
@@ -69,9 +67,6 @@ if (!$form->hasErrors) {
     # Format payment periods into years
     $duration = formatAsYears($payCycles, $termLength);
 }
-/* Add to session data. If user selected display,
-   Add payment schedule array to session data.
-*/
 
 $_SESSION['result'] = [
     'paymentCycle' => $paymentCycle,
@@ -85,7 +80,6 @@ $_SESSION['result'] = [
     'paymentSchedule' => $display == 'true' ? $paymentSchedule : null,
     'principal' => $principal,
 ];
-
 
 header('Location: index.php');
 
