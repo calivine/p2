@@ -17,7 +17,7 @@ require 'logic.php';
 <main class='container'>
     <h1>Loan Map</h1>
     <p>This tool helps users plan loan payments. Fill out the form below and press submit.</p>
-    <section>
+    <section id='formInput'>
         <form method='GET' action='calculate.php'>
             <p>Required fields are followed by <strong><abbr title='required'>*</abbr></strong></p>
             <fieldset>
@@ -90,7 +90,7 @@ require 'logic.php';
                         <?php if ($index == 0): ?>
                             <tr>
                             <td>$<?= $payment ?></td>
-                        <?php elseif ($index % $rowBreak == 0): ?>
+                        <?php elseif (isset($rowBreak) and $index % $rowBreak == 0): ?>
                             <td>$<?= $payment ?></td>
                             </tr>
                             <tr>

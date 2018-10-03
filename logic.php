@@ -16,12 +16,11 @@ if (isset($_SESSION['result'])) {
     $principal = $results['principal'];
     $errors = $results['errors'];
     $hasErrors = $results['hasErrors'];
+    if ($paymentSchedule != null) {
+        $rowBreak = round(sqrt(count($paymentSchedule)), 0);
+    }
 }
 
-if (isset($paymentSchedule) and $paymentSchedule != null) {
-    $rowBreak = round(sqrt(count($paymentSchedule)), 0);
-    # $rowBreak = round(count($paymentSchedule) / 4, 0);
-}
 
 session_unset();
 

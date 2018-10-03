@@ -7,7 +7,9 @@ body {
 }
 
 form {
+    font-weight: 600;
     margin: inherit;
+    padding: 5px;
     width: 400px;
 }
 
@@ -66,3 +68,10 @@ td:nth-child(even) {
 td:nth-child(odd) {
     background: #FFF;
 }
+
+/*
+#formInput {
+    background-color: aquamarine;
+}
+*/
+
