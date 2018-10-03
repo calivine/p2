@@ -1,6 +1,7 @@
 <?php
 require 'logic.php';
 ?>
+<!DOCTYPE html>
 <html lang='en'>
 <head>
     <title>Loan Planner</title>
