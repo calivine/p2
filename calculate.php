@@ -10,6 +10,7 @@ session_start();
 # Instantiate new form object
 $form = new Form($_GET);
 
+# Get form data
 $principal = $form->get('principal');
 $interest = $form->get('interest');
 $payment = $form->get('payment');
@@ -27,11 +28,11 @@ if (!$form->hasErrors) {
     # Convert interest rate to decimal form
     $interestRate = convertInterest($interest);
 
-    # calculate Interest Rate Factor
+    # Interest Rate Factor
     $intRateFactor = getInterestFactor($interestRate);
 
-    # Get payment period term
-    $termLength = paymentPeriodDuration($paymentCycle);
+    # Convert input to integer
+    $termLength = paymentFrequency($paymentCycle);
 
     # Variable to tracking principal as it is paid off.
     $remainingPrincipal = $principal;
@@ -48,7 +49,7 @@ if (!$form->hasErrors) {
         $interestPaid += $interestPayment;
         # Count payment periods
         ++$payCycles;
-        # Track progress
+        # Track progress, add remaining balance to array
         $paymentSchedule[] = round($remainingPrincipal, 2);
     }
     /*

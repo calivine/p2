@@ -48,16 +48,20 @@ require 'logic.php';
                     <option value='select'>Select Length</option>
                     <option value='thirty'
                         <?php if (isset($paymentCycle) and $paymentCycle == 'thirty') echo 'selected' ?>>
-                        Thirty days</option>
+                        Thirty days
+                    </option>
                     <option value='sixty'
                         <?php if (isset ($paymentCycle) and $paymentCycle == 'sixty') echo 'selected' ?>>
-                        Sixty days</option>
+                        Sixty days
+                    </option>
                     <option value='ninety'
                         <?php if (isset ($paymentCycle) and $paymentCycle == 'ninety') echo 'selected' ?>>
-                        Ninety days</option>
+                        Ninety days
+                    </option>
                 </select>
-                <label for='display'>
-                    <input type='checkbox' name='display' id='display' <?php if (isset($display) and $display) echo 'checked' ?>>
+                <label for='display' id="checkDisplay">
+                    <input type='checkbox' name='display'
+                           id='display' <?php if (isset($display) and $display) echo 'checked' ?>>
                     Display Payment Schedule
                 </label>
             </fieldset>
@@ -74,37 +78,35 @@ require 'logic.php';
         </form>
     </section>
     <?php if (!$hasErrors): ?>
-        <section>
-            <?php if (isset($interestPaid)): ?>
-                <p class='alert alert-success'>
-                    Total Interest Paid: $<?= $interestPaid ?>
-                </p>
-            <?php endif ?>
-            <?php if (isset($duration)): ?>
-                <p class='alert alert-primary'>
-                    Time to pay off: <?= $duration ?> year(s)
-                </p>
-            <?php endif ?>
-            <?php if (isset($paymentSchedule) and $paymentSchedule != null): ?>
-                <table>
-                    <?php foreach ($paymentSchedule as $index => $payment): ?>
-                        <?php if ($index == 0): ?>
-                            <tr>
-                            <td>$<?= $payment ?></td>
-                        <?php elseif (isset($rowBreak) and $index % $rowBreak == 0): ?>
-                            <td>$<?= $payment ?></td>
-                            </tr>
-                            <tr>
-                        <?php elseif ($index == count($paymentSchedule) - 1): ?>
-                            <td>$<?= $payment ?></td>
-                            </tr>
-                        <?php else: ?>
-                            <td>$<?= $payment ?></td>
-                        <?php endif ?>
-                    <?php endforeach ?>
-                </table>
-            <?php endif ?>
-       </section>
+        <?php if (isset($interestPaid)): ?>
+            <p class='alert alert-success'>
+                Total Interest Paid: $<?= $interestPaid ?>
+            </p>
+        <?php endif ?>
+        <?php if (isset($duration)): ?>
+            <p class='alert alert-primary'>
+                Time to pay off: <?= $duration ?> year(s)
+            </p>
+        <?php endif ?>
+        <?php if (isset($paymentSchedule) and $paymentSchedule != null): ?>
+            <table>
+                <?php foreach ($paymentSchedule as $index => $payment): ?>
+                    <?php if ($index == 0): ?>
+                        <tr>
+                        <td>$<?= $payment ?></td>
+                    <?php elseif (isset($rowBreak) and $index % $rowBreak == 0): ?>
+                        <td>$<?= $payment ?></td>
+                        </tr>
+                        <tr>
+                    <?php elseif ($index == count($paymentSchedule) - 1): ?>
+                        <td>$<?= $payment ?></td>
+                        </tr>
+                    <?php else: ?>
+                        <td>$<?= $payment ?></td>
+                    <?php endif ?>
+                <?php endforeach ?>
+            </table>
+        <?php endif ?>
     <?php endif; ?>
 </main>
 </body>

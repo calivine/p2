@@ -2,7 +2,10 @@
 * By: Alex Caloggero
 * Production URL: http://p2.caloggero.me
 ## Outside resources
-*your list of outside resources go here*
+* [How to calculate loan interest.](https://www.navient.com/loan-customers/interest-and-taxes/how-to-calculate-your-interest/)
+* [W3C: Centering Things](https://www.w3.org/Style/Examples/007/center.en.html)
+* [HTML Form structure](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/How_to_structure_an_HTML_form)
+
 
 ## 3 Unique inputs
 (1) A number input to collect the user's remaining loan balance
@@ -10,8 +13,8 @@
 (3) A checkbox to indicate whether or not the program should display the payment schedule
 
 ## Class
-*List the name of the class you're using, e.g. Form.php, Password.php, etc.*
+`Form.php`
 
 ## Code style divergences
-*list any divergences from PSR-1/PSR-2 and course guidelines on code style*
+*None*
 

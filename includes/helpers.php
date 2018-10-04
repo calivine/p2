@@ -9,20 +9,36 @@ $payCycles = 0;
 # Array to hold values of payment schedule
 $paymentSchedule = [];
 
-
-
+/**
+ * Convert interest from digit to decimal format
+ * @param $interest
+ * @return float
+ */
 function convertInterest($interest)
 {
     $converted = $interest * .01;
     return $converted;
 }
 
+/**
+ * Calculate Interest Rate Factor
+ * interest / # of days in the year
+ * @param $interest
+ * @return float|int
+ */
 function getInterestFactor($interest)
 {
-    $rate = $interest / 365;
+    $rate = $interest / 365.25;
     return $rate;
 }
 
+/**
+ * Calculate the amount of interest to charge per cycle
+ * @param $principal
+ * @param $intRateFactor
+ * @param $termLength
+ * @return float|int
+ */
 function interestPerCycle($principal, $intRateFactor, $termLength)
 {
     # At the start of the cycle, calculate 30 days of interest and add to principal
@@ -32,7 +48,12 @@ function interestPerCycle($principal, $intRateFactor, $termLength)
     return $int_to_add;
 }
 
-function paymentPeriodDuration($cycle)
+/**
+ * Convert input from drop down select to integer
+ * @param $cycle
+ * @return int
+ */
+function paymentFrequency($cycle)
 {
     if ($cycle == 'thirty') {
         $paymentTerm = 30;
@@ -49,6 +70,12 @@ function paymentPeriodDuration($cycle)
     return $paymentTerm;
 }
 
+/**
+ * Format the number of payment periods into years
+ * @param $paymentPeriods
+ * @param $paymentTerm
+ * @return float
+ */
 function formatAsYears($paymentPeriods, $paymentTerm)
 {
     $days = $paymentPeriods * $paymentTerm;
