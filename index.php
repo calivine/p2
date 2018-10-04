@@ -17,12 +17,12 @@ require 'logic.php';
 <body>
 <main class='container'>
     <h1>Loan Map</h1>
-    <p>This tool helps users plan loan payments. Fill out the form below and press submit.</p>
+    <p>Use this interest calculator to help you optimize loan payments.</p>
     <section id='formInput'>
         <form method='GET' action='calculate.php'>
-            <p>Required fields are followed by <strong><abbr title='required'>*</abbr></strong></p>
+            <h2>Loan Details</h2>
             <fieldset>
-                <legend>Loan Details</legend>
+                <legend>Required fields are followed by <strong><abbr title='required'>*</abbr></strong></legend>
                 <label for='principal'>
                     Principal Remaining ($)
                     <strong><abbr title='required'>*</abbr></strong>
