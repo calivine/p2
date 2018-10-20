@@ -82,5 +82,5 @@ $_SESSION['result'] = [
     'principal' => $principal,
 ];
 
-header('Location: index.php');
+header('Location: ../index.php');
 
