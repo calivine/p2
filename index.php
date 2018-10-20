@@ -1,5 +1,5 @@
 <?php
-require 'logic.php';
+require 'includes/logic.php';
 ?>
 <!DOCTYPE html>
 <html lang='en'>
@@ -19,7 +19,7 @@ require 'logic.php';
     <h1>Loan Map</h1>
     <p>Use this interest calculator to help you optimize loan payments.</p>
     <section id='formInput'>
-        <form method='GET' action='calculate.php'>
+        <form method='GET' action='includes/calculate.php'>
             <h2>Loan Details</h2>
             <fieldset>
                 <legend>Required fields are followed by <strong><abbr title='required'>*</abbr></strong></legend>
